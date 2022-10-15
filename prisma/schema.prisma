@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,4 +16,19 @@ model Menu {
   valueMenu   Float?   @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  orders      Order[]
+}
+
+model Order {
+  id          Int      @id @default(autoincrement())
+  nameClient  String?
+  numberTable Int
+  valueOrder  Float?   @default(0)
+  status      String?  @default("Open")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  menuId      Int?
+  Menu        Menu?    @relation(fields: [menuId], references: [id])
+
+  @@index([menuId], map: "Order_menuId_fkey")
 }

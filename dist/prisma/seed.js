@@ -21,7 +21,14 @@ async function main() {
             active: true,
         },
     });
-    console.log({ post1, post2 });
+    const order = await prisma.order.create({
+        data: {
+            nameClient: 'Samuel',
+            numberTable: 12,
+            menuId: 1,
+        },
+    });
+    console.log({ post1, post2, order });
 }
 main()
     .catch((e) => {

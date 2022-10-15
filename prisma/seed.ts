@@ -13,7 +13,6 @@ async function main() {
       active: false,
     },
   });
-
   const post2 = await prisma.menu.upsert({
     where: { id: 2 },
     update: {},
@@ -23,8 +22,15 @@ async function main() {
       active: true,
     },
   });
+  const order = await prisma.order.create({
+    data: {
+      nameClient: 'Samuel',
+      numberTable: 12,
+      menuId: 1,
+    },
+  });
 
-  console.log({ post1, post2 });
+  console.log({ post1, post2, order });
 }
 
 // execute the main function
