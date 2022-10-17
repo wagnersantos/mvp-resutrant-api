@@ -26,6 +26,9 @@ let MenusController = class MenusController {
     create(createMenuDto) {
         return this.menusService.create(createMenuDto);
     }
+    createAll(createMenuDto) {
+        return this.menusService.createMany(createMenuDto);
+    }
     findDrafts() {
         return this.menusService.findDrafts();
     }
@@ -50,6 +53,15 @@ __decorate([
     __metadata("design:paramtypes", [create_menu_dto_1.CreateMenuDto]),
     __metadata("design:returntype", void 0)
 ], MenusController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('/all'),
+    (0, swagger_1.ApiBody)({ type: [create_menu_dto_1.CreateMenuDto] }),
+    (0, swagger_1.ApiCreatedResponse)({ type: menu_entity_1.MenuEntity, isArray: true }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", void 0)
+], MenusController.prototype, "createAll", null);
 __decorate([
     (0, common_1.Get)('drafts'),
     (0, swagger_1.ApiOkResponse)({ type: menu_entity_1.MenuEntity, isArray: true }),

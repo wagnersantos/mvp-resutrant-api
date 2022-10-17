@@ -10,7 +10,12 @@ import {
 import { MenusService } from './menus.service';
 import { CreateMenuDto } from './dto/create-menu.dto';
 import { UpdateMenuDto } from './dto/update-menu.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiTags,
+  ApiBody,
+} from '@nestjs/swagger';
 import { MenuEntity } from './entities/menu.entity';
 
 @ApiTags('Menus')
@@ -22,6 +27,13 @@ export class MenusController {
   @ApiCreatedResponse({ type: MenuEntity })
   create(@Body() createMenuDto: CreateMenuDto) {
     return this.menusService.create(createMenuDto);
+  }
+
+  @Post('/all')
+  @ApiBody({ type: [CreateMenuDto] })
+  @ApiCreatedResponse({ type: MenuEntity, isArray: true })
+  createAll(@Body() createMenuDto: CreateMenuDto[]) {
+    return this.menusService.createMany(createMenuDto);
   }
 
   @Get('drafts')

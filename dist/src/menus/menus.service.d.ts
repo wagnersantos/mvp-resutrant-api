@@ -5,6 +5,7 @@ export declare class MenusService {
     private prisma;
     constructor(prisma: PrismaService);
     create(createMenuDto: CreateMenuDto): import(".prisma/client").Prisma.Prisma__MenuClient<import(".prisma/client").Menu, never>;
+    createMany(createMenuDto: CreateMenuDto[]): import(".prisma/client").PrismaPromise<import(".prisma/client").Prisma.BatchPayload>;
     findDrafts(): import(".prisma/client").PrismaPromise<import(".prisma/client").Menu[]>;
     findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Menu[]>;
     findOne(id: number): import(".prisma/client").Prisma.Prisma__MenuClient<import(".prisma/client").Menu, never>;

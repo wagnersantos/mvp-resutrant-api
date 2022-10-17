@@ -11,6 +11,10 @@ export class MenusService {
     return this.prisma.menu.create({ data: createMenuDto });
   }
 
+  createMany(createMenuDto: CreateMenuDto[]) {
+    return this.prisma.menu.createMany({ data: createMenuDto });
+  }
+
   findDrafts() {
     return this.prisma.menu.findMany({ where: { active: false } });
   }
